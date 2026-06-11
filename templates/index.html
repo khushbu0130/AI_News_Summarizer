@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI News Summarizer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            AI News Summarizer
+        </div>
+
+    </nav>
+
+    <section class="hero">
+
+        <h2 class="sub-heading">
+            AI Powered
+        </h2>
+
+        <h1 class="heading">
+            News Article Summarizer
+        </h1>
+
+        <p class="subtitle">
+            Get concise and accurate summaries of any news article in seconds.
+        </p>
+
+        <form method="POST" class="form">
+
+            <div class="input-wrapper">
+
+                <div class="icon-box">
+                    🔗
+                </div>
+
+                <div class="input-content">
+
+                    <label>
+                        Enter News Article URL
+                    </label>
+
+                    <div class="input-group">
+
+                        <input
+                            type="text"
+                            name="url"
+                            id="url"
+                            required
+                            placeholder="https://example.com/news-article"
+                        >
+
+                        <button type="submit">
+                            Summarize →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="bottom-text">
+                Fast. Accurate. AI Powered.
+            </div>
+
+        </form>
+
+    </section>
+
+    <div class="flash-message">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+
+            <div class="alert">
+                {{ message }}
+            </div>
+
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    </div>
+
+    {% if title %}
+
+    <section class="content">
+
+        <div class="card">
+
+            <h2 class="article-title">
+                {{ title }}
+            </h2>
+
+            <div class="main-wrapper">
+
+                <div class="col-1">
+
+                    <p class="author-tag">
+                        Authors:
+                    </p>
+
+                    <ul class="author-list">
+                        {% for author in authors.split(', ') %}
+                            <li>{{ author }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <button id="readMoreBtn" onclick="toggleAuthors()">
+                        Read More
+                    </button>
+
+                    <p class="date-tag">
+                        Publication Date:
+                        <time datetime="{{ publish_date }}">
+                            {{ publish_date }}
+                        </time>
+                    </p>
+
+                </div>
+
+                <div class="col-2">
+
+                    <img
+                        src="{{ top_image }}"
+                        class="top-image"
+                        alt="Top Image"
+                    >
+
+                </div>
+
+            </div>
+
+            <p class="summary">
+                <span class="summary-tag">
+                    Summary:
+                </span>
+
+                {{ summary }}
+            </p>
+
+            <p class="sentiment-tag">
+                Sentiment: {{ sentiment }}
+            </p>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+<script>
+
+function toggleAuthors() {
+
+    var authors = document.querySelectorAll(".author-list li");
+
+    if (authors.length < 6) {
+
+        var btn = document.getElementById("readMoreBtn");
+
+        btn.style.display = 'none';
+    }
+
+    for (var i = 5; i < authors.length; i++) {
+
+        authors[i].classList.toggle("hidden");
+    }
+
+    var readMoreBtn = document.getElementById("readMoreBtn");
+
+    if (authors[5] && authors[5].classList.contains("hidden")) {
+
+        readMoreBtn.textContent = "Read More";
+
+    } else {
+
+        readMoreBtn.textContent = "Read Less";
+    }
+}
+
+window.addEventListener("load", toggleAuthors);
+
+</script>
+
+</body>
+</html>
