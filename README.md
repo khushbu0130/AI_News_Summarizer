@@ -70,6 +70,6 @@ This project is licensed under the MIT License.
 
 ---
 
-Hardik Thakur
+Khushbu Kumari
 
-GitHub: https://github.com/HardikThakur07
+GitHub: https://github.com/khushbu0130
