@@ -17,7 +17,7 @@ An AI-powered web application that automatically summarizes news articles from U
 
 ## Preview
 
-![Project Preview](https://github.com/HardikThakur07/AI_News_Summarizer/blob/master/Project_Demo_Image.png?raw=true)
+![Project Preview](https://github.com/khushbu0130/AI_News_Summarizer/blob/7497969f30f47349f25947d85637259ae6de513e/Project_Demo_Image.png)
 ---
 
 ## Tech Stack
